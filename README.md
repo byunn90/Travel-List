@@ -2,6 +2,12 @@
 
 ## Table of contents
 
+1. [Description](#description)
+2. [Technologies](#technologies)
+3. [Installation](#installation)
+4. [Usage](#usage)
+5. [Contact](#contact)
+
 ## Description
 
 "Far Away" is a little mini project with react that you can organise travel preparation application designed to streamline your packing process for upcoming trips. With an intuitive interface, this application enables users to create a personalized packing list by adding essential items needed for their journey.
