@@ -20,8 +20,12 @@ function Logo() {
 }
 
 function Form() {
+  function handleSubmit() {
+    console.log("You just submited");
+  }
+
   return (
-    <form className="add-form">
+    <form className="add-form" onClick={handleSubmit}>
       <h3>What do you need for your 😍 trip?</h3>
       <select>
         {Array.from({ length: 20 }, (_, i) => i + 1).map((num) => (
