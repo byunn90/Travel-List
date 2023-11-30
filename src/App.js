@@ -27,6 +27,7 @@ function Form() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    // if not description return nothing or else do the following below
     if (!description) return;
     const newItem = { description, quantity, packed: false, id: Date.now() };
     console.log(newItem);
@@ -42,15 +43,6 @@ function Form() {
           <option>{num}</option>
         ))}
       </select>
-      <input
-        type="text"
-        placeholder="Item..."
-        value={description}
-        onChange={(e) => {
-          console.log(e.target.value);
-          setDescription(e.target.value);
-        }}
-      />
       <button>Add</button>
     </form>
   );
