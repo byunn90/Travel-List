@@ -24,6 +24,12 @@ function Logo() {
 function Form() {
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState(1);
+  // Storing packing items ⬇
+  const [items, setItems] = useState([]);
+
+  function handleAddItems(items) {
+    setItems((items) => [...items, items]);
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -31,6 +37,7 @@ function Form() {
     if (!description) return;
     const newItem = { description, quantity, packed: false, id: Date.now() };
     console.log(newItem);
+    handleAddItems(newItem);
     setDescription("");
     setQuantity(1);
   }
@@ -43,6 +50,12 @@ function Form() {
           <option>{num}</option>
         ))}
       </select>
+      <input
+        type="text"
+        placeholder="item.."
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+      ></input>
       <button>Add</button>
     </form>
   );
