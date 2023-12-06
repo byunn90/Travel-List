@@ -7,17 +7,22 @@ const initialItems = [
 ];
 
 export default function App() {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState(initialItems);
 
   function handleAddItems(item) {
     setItems((items) => [...items, item]);
+  }
+
+  function handleDeleteItem(id) {
+    // if items.id is not ! equal to id Then do nothing or else if same remove it
+    setItems((items) => items.filter((item) => item.id !== id));
   }
 
   return (
     <div>
       <Logo />
       <Form onAddItems={handleAddItems} />
-      <PackingList items={items} />
+      <PackingList items={items} onDeleteItem={handleDeleteItem} />
       <Stats />
     </div>
   );
@@ -37,9 +42,8 @@ function Form({ onAddItems }) {
     // if not description return nothing or else do the following below
     if (!description) return;
     const newItem = { description, quantity, packed: false, id: Date.now() };
-    console.log(newItem);
+    console.log(newItem.id);
     onAddItems(newItem);
-    console.log(newItem);
     setDescription("");
     setQuantity(1);
   }
@@ -63,25 +67,25 @@ function Form({ onAddItems }) {
   );
 }
 
-function PackingList({ items }) {
+function PackingList({ items, onDeleteItem }) {
   return (
     <div className="list">
       <ul className="list">
         {items.map((item) => (
-          <Item item={item} />
+          <Item item={item} onDeleteItem={onDeleteItem} />
         ))}
       </ul>
     </div>
   );
 }
 
-function Item({ item }) {
+function Item({ item, onDeleteItem }) {
   return (
     <li>
       <span style={item.packed ? { textDecoration: "line-through" } : {}}>
         {item.quantity} {item.description}
       </span>
-      <button>❌</button>
+      <button onclick={() => onDeleteItem(item.id)}>❌</button>
     </li>
   );
 }
