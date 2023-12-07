@@ -7,7 +7,7 @@ const initialItems = [
 ];
 
 export default function App() {
-  const [items, setItems] = useState(initialItems);
+  const [items, setItems] = useState([initialItems]);
 
   function handleAddItems(item) {
     setItems((items) => [...items, item]);
@@ -71,8 +71,8 @@ function PackingList({ items, onDeleteItem }) {
   return (
     <div className="list">
       <ul className="list">
-        {items.map((item) => (
-          <Item item={item} onDeleteItem={onDeleteItem} />
+        {items.map((items) => (
+          <Item item={items} onDeleteItem={onDeleteItem} key={items.id} />
         ))}
       </ul>
     </div>
@@ -85,7 +85,7 @@ function Item({ item, onDeleteItem }) {
       <span style={item.packed ? { textDecoration: "line-through" } : {}}>
         {item.quantity} {item.description}
       </span>
-      <button onclick={() => onDeleteItem(item.id)}>❌</button>
+      <button onClick={() => onDeleteItem(item.id)}>❌</button>
     </li>
   );
 }
