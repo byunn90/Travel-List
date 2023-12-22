@@ -12,6 +12,9 @@ export default function App() {
   function handleAddItems(item) {
     setItems((items) => [...items, item]);
   }
+  function clearItems() {
+    setItems([]);
+  }
 
   function handleDeleteItem(id) {
     // if items.id is not ! equal to id Then do nothing or else if same remove it
@@ -33,6 +36,7 @@ export default function App() {
         items={items}
         onDeleteItem={handleDeleteItem}
         onToggleItems={handleToggleItem}
+        clearList={clearItems}
       />
       <Stats items={items} />
     </div>
@@ -78,10 +82,15 @@ function Form({ onAddItems }) {
   );
 }
 
-function PackingList({ items, onDeleteItem, onToggleItems }) {
+function PackingList({ items, onDeleteItem, onToggleItems, clearList }) {
   const [sortBy, setSortBy] = useState("input");
 
   let sortedItems;
+  function emptyBox() {
+    clearList();
+    console.log(items);
+  }
+  console.log(items);
 
   if (sortBy === "input") sortedItems = items;
   //
@@ -111,7 +120,7 @@ function PackingList({ items, onDeleteItem, onToggleItems }) {
           <option value="description">Sort by description</option>
           <option value="packed">Sort by packed status</option>
         </select>
-        <button>Clear list</button>
+        <button onClick={emptyBox}>Clear List</button>
       </div>
     </div>
   );
