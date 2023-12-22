@@ -13,7 +13,8 @@ export default function App() {
     setItems((items) => [...items, item]);
   }
   function clearItems() {
-    setItems([]);
+    const confirmed = window.confirm("Are you sure you want delete all items?");
+    if (confirmed) setItems([]);
   }
 
   function handleDeleteItem(id) {
